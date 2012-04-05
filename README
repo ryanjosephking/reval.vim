@@ -35,8 +35,8 @@ g:revalrunner - The command and arguments to use for the filter.
     let g:revalrunner = 'perl -p'
 
 g:revalfile - The filename of the loop body itself. The extension will hint
-  vim on how to syntax highlight. Default when 'perl' == g:revallang is:
-    let g:revalfile = '/tmp/reval.pm'
+  vim on how to syntax highlight. Example when 'perl' == g:revallang is:
+    let g:revalfile = '/tmp/GARBLE/0-reval.pm'
 
 g:revalbody - The starting contents of your buffer. 
   Default when 'perl' == g:revallang is:
