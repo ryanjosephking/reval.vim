@@ -4,6 +4,6 @@ REVALRC=~/.reval.vimrc
 BACKUPRC=${REVALRC}.saved
 [ -e $REVALRC ] && mv $REVALRC $BACKUPRC
 reval
-echo "let g:revallang = 'ruby'" > $REVALRC
+make ruby
 reval
 [ -e $BACKUPRC ] && mv $BACKUPRC $REVALRC
