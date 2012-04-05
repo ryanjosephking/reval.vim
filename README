@@ -13,9 +13,10 @@ default, you could do anything with the loop that you want.
 
 = Install =
 
-This part is not very refined. At the moment, what I would do is:
-mkdir -p ~/.vim/plugin; ln -s `pwd`/reval.vim $_
-...TODO
+ * make install - Will put the `reval.vim` into ~/.vim/plugin/, and check to see
+     if you have a ~/bin/ -- if you do, it will put the `reval` script there.
+ * make ruby - Switch your ~/.reval.vimrc to use Ruby by default.
+ * make uninstall - To make rking sad. =(
 
 = Options =
 
