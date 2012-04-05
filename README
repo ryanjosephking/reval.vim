@@ -11,6 +11,12 @@ Hence reval.vim. All it does is use your top buffer as the argument to "perl
 capturing stdout. This means that, though it is geared for regex testing by
 default, you could do anything with the loop that you want.
 
+= Install =
+
+This part is not very refined. At the moment, what I would do is:
+mkdir -p ~/.vim/plugin; ln -s `pwd`/reval.vim $_
+...TODO
+
 = Options =
 
 g:revallang - Switches the file, cmd, and "body"-regexp to match your language

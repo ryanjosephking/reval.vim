@@ -4,6 +4,8 @@
 " Add ~/.reval.vimrc
 " Upload!
 
+map <Leader>reval :call RunReval()<cr>
+
 if !exists('g:revallang')
   let g:revallang = 'perl' " Should be ruby, but I'm going easy on late adopters
 end
@@ -37,16 +39,11 @@ if !exists('g:revalcmd')
   let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
 end
 
-noremap <cr> :call TestTheRegex()<cr>
-if exists('g:revalcrazyrun')
-  au InsertLeave *.pm call TestTheRegex()
-end
 
 
 func! TestTheRegex()
   w
   wincmd j
-  wincmd l
   %d
   let l:output = system(g:revalcmd)
   for line in split(l:output, "\n")
@@ -58,13 +55,20 @@ func! TestTheRegex()
 endfunc
 
 func! s:StartInputFile()
-  exec 'vsplit' g:revalinput
+  exec 'e' g:revalinput
   $
   if getpos('.')[1] == "1"
     call s:PopulateInputFile()
   end
   w
   0
+endfunc
+
+func! s:StartOutputFile()
+  " XXX I want this to be a truly empty buffer, like when you " start vim with
+  " no args:
+  exec 'vsplit'
+  e /tmp/unused
 endfunc
 
 func! s:PopulateInputFile()
@@ -91,10 +95,19 @@ endfunc
 func! s:StartRegexFile()
   exec 'topleft sp' g:revalfile
   3wincmd _
+  " TODO: Make the following window-specific somehow so that when we quit we
+  " get back to normal:
+  noremap <cr> :call TestTheRegex()<cr>
+  if exists('g:revalcrazyrun')
+    au InsertLeave *.pm call TestTheRegex()
+  end
   call setline('.', g:revalbody)
   call setpos('.', [0, 1, 3, 0]) " Thanks to #vim's bairui for this spiff-up!
   w
 endfunc
 
-call s:StartInputFile()
-call s:StartRegexFile()
+func! RunReval()
+  call s:StartInputFile()
+  call s:StartOutputFile()
+  call s:StartRegexFile()
+endfunc
