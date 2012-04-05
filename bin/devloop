@@ -1,0 +1,9 @@
+#!/bin/sh -e
+while vim -o reval.vim README; do # Break out of the loop with :cq
+  vim +'so reval.vim'
+done
+git status
+echo -n "(Hit Enter to see diffs)"
+read
+git diff 
+echo '...now to git commit && git push'
