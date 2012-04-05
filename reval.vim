@@ -93,7 +93,6 @@ etc <withattrs a="b">etc</withattrs>
   
 <brokenend
 .
-end
 endfunc
 
 func! s:StartRegexFile()
