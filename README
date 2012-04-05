@@ -1,0 +1,42 @@
+reval.vim - Quick edit/filter/see loop, especially for regex testing.
+
+= Intro =
+
+The idea comes from (sites like) http://rubular.com where you can input a
+regex, then see it filter the results. Though a really cool use of AJAX, who
+would rather be in a web form than in their very own text editor?
+
+Hence reval.vim. All it does is use your top buffer as the argument to "perl
+-pe", then uses the left buffer as that command's stdin, with the right buffer
+capturing stdout. This means that, though it is geared for regex testing by
+default, you could do anything with the loop that you want.
+
+= Options =
+
+g:revallang - Switches the file, cmd, and "body"-regexp to match your language
+  choice. Currently available: perl. Default is:
+    let g:revallang = 'perl' " (though it should be ruby!)
+
+g:revalrunner - The command and arguments to use for the filter.
+  Default when 'perl' == g:revallang is:
+    let g:revalrunner = 'perl -p'
+
+g:revalfile - The filename of the loop body itself. The extension will hint
+  vim on how to syntax highlight. Default when 'perl' == g:revallang is:
+    let g:revalfile = 'reval.pm'
+
+g:revalbody - The starting contents of your buffer. 
+  Default when 'perl' == g:revallang is:
+    let g:revalbody = 's//MATCH/g'
+
+g:revalhl - The text to run with a "/" command to give your output highlighting.
+    let g:revalhl = 'MATCH'
+
+g:revalinput - The file to use for input. Default is:
+  let g:revalinput = 'in'
+
+g:revalcmd - Pieces together the previous bits to make the actual command. If
+  you want to get really fancy, this is the way to control it. After
+  executing, reval.vim will use this command's stdout for the output buffer.
+  Default is:
+    let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
