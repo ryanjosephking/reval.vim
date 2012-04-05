@@ -1,3 +1,0 @@
-while vim -o reval.vim README; do # Break out of the loop with :cq
-  vim +'so reval.vim'
-done
