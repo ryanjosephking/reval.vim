@@ -14,12 +14,12 @@ if !exists('g:revallang')
 end
 
 if 'perl' == g:revallang
-  if !exists('g:revalrunner')|let g:revalrunner = 'perl -p'|end
+  if !exists('g:revalrunner')|let g:revalrunner = 'perl -wp'|end
   if !exists('g:revalfile')|let g:revalfile = 'reval.pm'|end
   if !exists('g:revalbody')|let g:revalbody = 's//…/g'|end
   if !exists('g:revalstartpos')|let g:revalstartpos = 3|end
 elseif 'ruby' == g:revallang
-  if !exists('g:revalrunner')|let g:revalrunner = 'ruby -p'|end
+  if !exists('g:revalrunner')|let g:revalrunner = 'ruby -wKup'|end
   if !exists('g:revalfile')|let g:revalfile = 'reval.rb'|end
   if !exists('g:revalbody')|let g:revalbody = "gsub(//,'…')"|end
   if !exists('g:revalstartpos')|let g:revalstartpos = 7|end
