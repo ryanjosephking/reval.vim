@@ -2,7 +2,7 @@ reval.vim - Quick edit/filter/see loop, especially for regex testing.
 
 = Intro =
 
-The idea comes from (sites like) http://rubular.com where you can input a
+The idea comes from (sites like) http://rubular.com/ where you can input a
 regex, then see it filter the results. Though a really cool use of AJAX, who
 would rather be in a web form than in their very own text editor?
 
@@ -19,9 +19,14 @@ mkdir -p ~/.vim/plugin; ln -s `pwd`/reval.vim $_
 
 = Options =
 
+You can set these options:
+ * Within vim with :let g:revallang = 'ruby'
+ * From the command-line with vim +'let g:revallang = ruby'
+ * N your vim rc files with let g:revallang = 'ruby' (note: this will work if you set them before or after ~/.vim/plugin/reval.vim is sourced).
+
 g:revallang - Switches the file, cmd, and "body"-regexp to match your language
   choice. Currently available: perl. Default is:
-    let g:revallang = 'perl' " (though it should be ruby!)
+    let g:revallang = 'perl'
 
 g:revalrunner - The command and arguments to use for the filter.
   Default when 'perl' == g:revallang is:
@@ -46,3 +51,19 @@ g:revalcmd - Pieces together the previous bits to make the actual command. If
   executing, reval.vim will use this command's stdout for the output buffer.
   Default is:
     let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
+
+= For More =
+
+An amazing, interactive regex lesson is here:
+  * Get on Freenode IRC - http://freenode.net/using_the_network.shtml
+  * /join #regex  (So the bot will talk to you -- but it's a good
+      channel, anyway)
+  * /msg pork !register yournick apassword
+  * /msg pork !regexquiz
+  * ...then have fun!
+
+Some regex resources are:
+  * Perl's Documentation - http://perldoc.perl.org/perlre.html
+  * http://rubular.com/ - A web version of this script (Ruby)
+  * http://regextester.com/ - ...same, for JavaScript, Perl, and PHP REs
+  * ...
