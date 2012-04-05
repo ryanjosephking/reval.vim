@@ -1,5 +1,5 @@
 " TODO:
-" git
+" Add plugin skeleton stuff from How_to_write_a_plugin
 " Rubify
 " Add ~/.reval.vimrc
 " Upload!
@@ -44,6 +44,7 @@ end
 func! TestTheRegex()
   w
   wincmd j
+  wincmd l
   %d
   let l:output = system(g:revalcmd)
   for line in split(l:output, "\n")
@@ -51,6 +52,7 @@ func! TestTheRegex()
   endfo
   1d " kind of a hack. Is required because we append() starting with line 1.
   exec 'silent! /' . g:revalhl
+  0
   wincmd k
 endfunc
 
@@ -65,18 +67,20 @@ func! s:StartInputFile()
 endfunc
 
 func! s:StartOutputFile()
-  " XXX I want this to be a truly empty buffer, like when you " start vim with
+  vsplit
+  wincmd l
+  " XXX I want this to be a truly empty buffer, like when you start vim with
   " no args:
-  exec 'vsplit'
   e /tmp/unused
+  setlocal buftype=nofile
 endfunc
 
 func! s:PopulateInputFile()
     a
 brokenfront> etc..
 -- This is the test input file. --
-/* Look make a change above,
- * hit Enter, then look to the right -->
+/* Look make a change above code, hit Enter,
+ * then look to the right -->
  */
 [lots more stuff here.]
 0 1 2 23 456 0.2 -3 1,258
