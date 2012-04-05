@@ -40,9 +40,6 @@ g:revalbody - The starting contents of your buffer.
   Default when 'perl' == g:revallang is:
     let g:revalbody = 's//MATCH/g'
 
-g:revalhl - The text to run with a "/" command to give your output highlighting.
-    let g:revalhl = 'MATCH'
-
 g:revalinput - The file to use for input. Default is:
   let g:revalinput = 'in'
 

@@ -18,15 +18,11 @@ if 'perl' == g:revallang
     let g:revalfile = 'reval.pm'
   end
   if !exists('g:revalbody')
-    let g:revalbody = 's//MATCH/g'
+    let g:revalbody = 's//…/g'
   end
 else
   echoerr 'Unexpected g:revallang = "'.g:revallang.'"'
   echo '...perhaps you want to be awesome and edit' % 'then notify rking@panoptic.com ?'
-end
-
-if !exists('g:revalhl')
-  let g:revalhl = 'MATCH'
 end
 
 if !exists('g:revalinput')
@@ -50,8 +46,7 @@ func! TestTheRegex()
   for line in split(l:output, "\n")
     call append(line('$'), line)
   endfo
-  1d " kind of a hack. Is required because we append() starting with line 1.
-  exec 'silent! /' . g:revalhl
+  1d " <- kind of a hack. (Required because we append() starting with line 1.)
   0
   wincmd k
 endfunc
@@ -73,6 +68,8 @@ func! s:StartOutputFile()
   " no args:
   e /tmp/unused
   setlocal buftype=nofile
+  syn match revalMatch '…'
+  hi link revalMatch Todo
 endfunc
 
 func! s:PopulateInputFile()
