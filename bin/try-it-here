@@ -1,0 +1,4 @@
+#!/bin/sh
+# The --noplugin is to make sure there is no interference from the rest of my
+# settings. It's not anything needed beyond testing.
+vim --noplugin +'so reval.vim' +'call RunReval()'
