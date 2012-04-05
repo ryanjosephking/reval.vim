@@ -35,14 +35,14 @@ g:revalrunner - The command and arguments to use for the filter.
 
 g:revalfile - The filename of the loop body itself. The extension will hint
   vim on how to syntax highlight. Default when 'perl' == g:revallang is:
-    let g:revalfile = 'reval.pm'
+    let g:revalfile = '/tmp/reval.pm'
 
 g:revalbody - The starting contents of your buffer. 
   Default when 'perl' == g:revallang is:
-    let g:revalbody = 's//MATCH/g'
+    let g:revalbody = 's//…/g'
 
 g:revalinput - The file to use for input. Default is:
-  let g:revalinput = 'in'
+  let g:revalinput = '/tmp/revalinput'
 
 g:revalcmd - Pieces together the previous bits to make the actual command. If
   you want to get really fancy, this is the way to control it. After

@@ -15,12 +15,12 @@ end
 
 if 'perl' == g:revallang
   if !exists('g:revalrunner')|let g:revalrunner = 'perl -wp'|end
-  if !exists('g:revalfile')|let g:revalfile = 'reval.pm'|end
+  if !exists('g:revalfile')|let g:revalfile = '/tmp/reval.pm'|end
   if !exists('g:revalbody')|let g:revalbody = 's//…/g'|end
   if !exists('g:revalstartpos')|let g:revalstartpos = 3|end
 elseif 'ruby' == g:revallang
   if !exists('g:revalrunner')|let g:revalrunner = 'ruby -wKup'|end
-  if !exists('g:revalfile')|let g:revalfile = 'reval.rb'|end
+  if !exists('g:revalfile')|let g:revalfile = '/tmp/reval.rb'|end
   if !exists('g:revalbody')|let g:revalbody = "gsub(//,'…')"|end
   if !exists('g:revalstartpos')|let g:revalstartpos = 7|end
 else
@@ -28,11 +28,9 @@ else
   finish
 end
 
-if !exists('g:revalinput')|let g:revalinput = 'in'|end
-
 " TODO feature! -- Make this default to % if they're already on a buffer
 " Something like: map <Leader>reval :let g:revalinput = %<cr>...
-if !exists('g:revalinput')|let g:revalinput = 'in'|end
+if !exists('g:revalinput')|let g:revalinput = '/tmp/revalinput'|end
 
 if !exists('g:revalcmd')
   let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
