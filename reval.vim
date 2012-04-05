@@ -1,5 +1,4 @@
 " TODO:
-" Add ~/.reval.vimrc
 " Upload!
 
 map <Leader>reval :call RunReval()<cr>
@@ -15,6 +14,7 @@ end
 
 if 'perl' == g:revallang
   if !exists('g:revalrunner')|let g:revalrunner = 'perl -wp'|end
+  " TODO: use tempname()
   if !exists('g:revalfile')|let g:revalfile = '/tmp/reval.pm'|end
   if !exists('g:revalbody')|let g:revalbody = 's//…/g'|end
   if !exists('g:revalstartpos')|let g:revalstartpos = 3|end
@@ -73,11 +73,12 @@ func! s:StartOutputFile()
   hi link revalMatch Todo
 endfunc
 
+" TODO: move this up
 func! s:PopulateInputFile()
     a
 brokenfront> etc..
 -- This is the test input file. --
-/* Look make a change above code, hit Enter,
+/* Change the above code, hit Enter,
  * then look to the right -->
  */
 [lots more stuff here.]
