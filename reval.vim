@@ -1,35 +1,38 @@
 " TODO:
-" Add plugin skeleton stuff from How_to_write_a_plugin
-" Rubify
 " Add ~/.reval.vimrc
 " Upload!
 
 map <Leader>reval :call RunReval()<cr>
+
+let s:rcfile = $HOME.'/.reval.vimrc'
+if filereadable(s:rcfile)
+  exec 'so' s:rcfile
+end
 
 if !exists('g:revallang')
   let g:revallang = 'perl' " Should be ruby, but I'm going easy on late adopters
 end
 
 if 'perl' == g:revallang
-  if !exists('g:revalrunner')
-    let g:revalrunner = 'perl -p'
-  end
-  if !exists('g:revalfile')
-    let g:revalfile = 'reval.pm'
-  end
-  if !exists('g:revalbody')
-    let g:revalbody = 's//…/g'
-  end
+  if !exists('g:revalrunner')|let g:revalrunner = 'perl -p'|end
+  if !exists('g:revalfile')|let g:revalfile = 'reval.pm'|end
+  if !exists('g:revalbody')|let g:revalbody = 's//…/g'|end
+  if !exists('g:revalstartpos')|let g:revalstartpos = 3|end
+elseif 'ruby' == g:revallang
+  if !exists('g:revalrunner')|let g:revalrunner = 'ruby -p'|end
+  if !exists('g:revalfile')|let g:revalfile = 'reval.rb'|end
+  if !exists('g:revalbody')|let g:revalbody = "gsub(//,'…')"|end
+  if !exists('g:revalstartpos')|let g:revalstartpos = 7|end
 else
-  echoerr 'Unexpected g:revallang = "'.g:revallang.'"'
-  echo '...perhaps you want to be awesome and edit' % 'then notify rking@panoptic.com ?'
+  echoerr 'Unexpected g:revallang = "'.g:revallang.'". Perhaps you want to be awesome and edit reval.vim to include a config for it then notify rking@panoptic.com with the patch?'
+  finish
 end
 
-if !exists('g:revalinput')
-  " TODO feature! -- Make this default to % if they're already on a buffer
-  " Something like: map <Leader>reval :let g:revalinput = %<cr>...
-  let g:revalinput = 'in'
-end
+if !exists('g:revalinput')|let g:revalinput = 'in'|end
+
+" TODO feature! -- Make this default to % if they're already on a buffer
+" Something like: map <Leader>reval :let g:revalinput = %<cr>...
+if !exists('g:revalinput')|let g:revalinput = 'in'|end
 
 if !exists('g:revalcmd')
   let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
@@ -103,7 +106,8 @@ func! s:StartRegexFile()
     au InsertLeave *.pm call TestTheRegex()
   end
   call setline('.', g:revalbody)
-  call setpos('.', [0, 1, 3, 0]) " Thanks to #vim's bairui for this spiff-up!
+  " Thanks to #vim's bairui for this spiff-up!:
+  call setpos('.', [0, 1, g:revalstartpos, 0])
   w
 endfunc
 

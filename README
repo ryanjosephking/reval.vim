@@ -20,12 +20,13 @@ mkdir -p ~/.vim/plugin; ln -s `pwd`/reval.vim $_
 = Options =
 
 You can set these options:
+ * In your ~/.reval.vimrc with let g:revallang = 'ruby'
  * Within vim with :let g:revallang = 'ruby'
  * From the command-line with vim +'let g:revallang = ruby'
- * N your vim rc files with let g:revallang = 'ruby' (note: this will work if you set them before or after ~/.vim/plugin/reval.vim is sourced).
+ * In your vim rc files with let g:revallang = 'ruby'
 
 g:revallang - Switches the file, cmd, and "body"-regexp to match your language
-  choice. Currently available: perl. Default is:
+  choice. Currently available: perl and ruby. Default is:
     let g:revallang = 'perl'
 
 g:revalrunner - The command and arguments to use for the filter.
