@@ -50,7 +50,7 @@ g:revallinewise - Defaults to off ("0"), which will treat the input file as a
   the way you expect it to work, so that \A means the beginning of the file,
   not each line, for example.  If you are doing much customization of the
   above variables, you'll probably want to 'let g:revallinewise = 1' so that
-  it prevents the addition of the '-0777' argument to your g:evalrunner.
+  it prevents the addition of the '-0400' argument to your g:evalrunner.
 
 g:revalcmd - Pieces together the previous bits to make the actual command. If
   you want to get really fancy, this is the way to control it. After
@@ -70,6 +70,7 @@ An amazing, interactive regex lesson is here:
 
 Some regex resources are:
   * Perl's Documentation - http://perldoc.perl.org/perlre.html
+  * The table of implementation comparisons (search for "Backslash"...) - http://www.regular-expressions.info/refflavors.html
   * http://rubular.com/ - A web version of this script (Ruby)
   * http://regextester.com/ - ...same, for JavaScript, Perl, and PHP REs
   * ...

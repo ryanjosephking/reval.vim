@@ -37,7 +37,7 @@ func! s:LoadDefaultOptions()
   " disables this appendage.
   if !exists('g:revallinewise')|let g:revallinewise = 0|end
   if !g:revallinewise
-    let g:revalrunner = g:revalrunner.' -0777'
+    let g:revalrunner = g:revalrunner.' -0400'
   end
 
   " TODO feature! -- Make this default to % if they're already on a buffer
