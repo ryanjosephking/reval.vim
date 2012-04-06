@@ -2,8 +2,12 @@
 while vim -o reval.vim README; do # Break out of the loop with :cq
   bin/reval
 done
+
+test/manually
+
 git status
 echo -n "(Hit Enter to see diffs)"
 read
-git diff | vim -
+
+git diff | bin/vim-pager
 echo '...now to git commit && git push'
