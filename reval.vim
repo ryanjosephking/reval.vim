@@ -73,18 +73,6 @@ func! s:StartInputFile()
   0
 endfunc
 
-func! s:StartOutputFile()
-  vsplit
-  wincmd l
-  " XXX I want this to be a truly empty buffer, like when you start vim with
-  " no args:
-  e /tmp/unused
-  setlocal buftype=nofile
-  syn match revalMatch '…'
-  hi link revalMatch Todo
-endfunc
-
-" TODO: move this up
 func! s:PopulateInputFile()
     a
 brokenfront> etc..
@@ -103,6 +91,17 @@ etc <withattrs a="b">etc</withattrs>
   
 <brokenend
 .
+endfunc
+
+func! s:StartOutputFile()
+  vsplit
+  wincmd l
+  " XXX I want this to be a truly empty buffer, like when you start vim with
+  " no args:
+  e /tmp/unused
+  setlocal buftype=nofile
+  syn match revalMatch '…'
+  hi link revalMatch Todo
 endfunc
 
 func! s:StartRegexFile()
