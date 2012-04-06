@@ -44,12 +44,17 @@ func! s:LoadDefaultOptions()
   " Something like: map <Leader>reval :let g:revalinput = %<cr>...
   if !exists('g:revalinput')|let g:revalinput = tempname().'revalinput'|end
 
+  call LoadDefaultRevalCmd()
+endfunc
+
+func! LoadDefaultRevalCmd()
   if !exists('g:revalcmd')
     let g:revalcmd = g:revalrunner.' '.g:revalfile.' 2>&1 < '.g:revalinput
   end
 endfunc
 
 func! TestTheRegex()
+  call s:LoadDefaultOptions() " in case the user changed vars since RunReval()
   w
   wincmd j
   wincmd l
@@ -61,6 +66,17 @@ func! TestTheRegex()
   1d " <- kind of a hack. (Required because we append() starting with line 1.)
   0
   wincmd k
+endfunc
+
+func! PerlDebugTestTheRegex()
+    let l:revalrunner = g:revalrunner
+    let l:revalcmd = g:revalcmd
+    let g:revalrunner = 'perl -p -mre=debug'
+    unlet g:revalcmd
+    call LoadDefaultRevalCmd()
+    call TestTheRegex()
+    let g:revalrunner = l:revalrunner
+    let g:revalcmd = l:revalcmd
 endfunc
 
 func! s:StartInputFile()
@@ -110,6 +126,8 @@ func! s:StartRegexFile()
   " TODO: Make the following window-specific somehow so that when we quit we
   " get back to normal:
   noremap <cr> :call TestTheRegex()<cr>
+  noremap <leader>d :call PerlDebugTestTheRegex()<cr>
+
   if exists('g:revalcrazyrun')
     au InsertLeave *.pm call TestTheRegex()
   end

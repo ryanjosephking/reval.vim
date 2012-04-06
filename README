@@ -30,7 +30,9 @@ g:revallang - Switches the file, cmd, and "body"-regexp to match your language
   choice. Currently available: perl and ruby. Default is:
     let g:revallang = 'perl'
 
-g:revalrunner - The command and arguments to use for the filter.
+g:revalrunner - The command and arguments to use for the filter. (Note: You
+    can temporarily set this to 'perl -p -mre=debug' for one run by hitting \d
+    instead of Enter)
   Default when 'perl' == g:revallang is:
     let g:revalrunner = 'perl -p'
 
@@ -70,7 +72,13 @@ An amazing, interactive regex lesson is here:
 
 Some regex resources are:
   * Perl's Documentation - http://perldoc.perl.org/perlre.html
-  * The table of implementation comparisons (search for "Backslash"...) - http://www.regular-expressions.info/refflavors.html
-  * http://rubular.com/ - A web version of this script (Ruby)
-  * http://regextester.com/ - ...same, for JavaScript, Perl, and PHP REs
+  * The table of implementation comparisons (search for "Backslash"...)
+        - http://www.regular-expressions.info/refflavors.html
+  * The web versions of this script (often better in several ways):
+      * http://rubular.com/ - Ruby
+      * http://regextester.com/ - JavaScript, Perl, and PHP REs
+  * The Komodo IDE's Rx Toolkit - http://www.activestate.com/komodo-ide
+  * pcretest from the PCRE lib - http://www.pcre.org/
+      * In my opinion, the -b option to print its internal format is not as
+        nice as `perl -mre=debug` (which is invoked if you hit \d from reval)
   * ...
