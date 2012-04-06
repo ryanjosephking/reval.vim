@@ -1,0 +1,6 @@
+#!/bin/sh
+vim - \
+    +'map <space> <c-d>' \
+    +'map <c-c> :q<enter>' \
+    +'set nomod iskeyword+=.  iskeyword+=/' \
+    "$@"
