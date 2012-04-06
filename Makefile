@@ -1,6 +1,7 @@
 default:
 	@echo 'Nothing to do. Simply do a `make install` and it will put the symlink in ~/.vim/plugin/revim.vim, plus attempt to add ~/bin/reval.'
 	@echo '(Also, if you want to default to Ruby, consider: make ruby)'
+	@echo '   (...and, there is also make linewise, if you really truly want it.)'
 
 install:
 	mkdir -p ~/.vim/plugin/
@@ -15,6 +16,10 @@ install:
 
 ruby:
 	echo "let g:revallang = 'ruby'" >> ~/.reval.vimrc
+
+# I don't really recommend this, but it's here in case you want it.
+linewise:
+	echo "let g:revallinewise = 1" >> ~/.reval.vimrc
 
 uninstall:
 	-rm ~/.vim/plugin/reval.vim

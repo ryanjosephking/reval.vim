@@ -1,9 +1,18 @@
-#!/bin/sh
+#!/bin/sh -x
 rm /tmp/reval*
 REVALRC=~/.reval.vimrc
 BACKUPRC=${REVALRC}.saved
 [ -e $REVALRC ] && mv $REVALRC $BACKUPRC
+read
 reval
+
+make linewise
+read
+reval
+
+rm $REVALRC
 make ruby
+read
 reval
+
 [ -e $BACKUPRC ] && mv $BACKUPRC $REVALRC

@@ -45,6 +45,13 @@ g:revalbody - The starting contents of your buffer.
 g:revalinput - The file to use for input. Default is:
   let g:revalinput = '/tmp/revalinput'
 
+g:revallinewise - Defaults to off ("0"), which will treat the input file as a
+  whole string.  This is a farily aggressive default, but I believe it is more
+  the way you expect it to work, so that \A means the beginning of the file,
+  not each line, for example.  If you are doing much customization of the
+  above variables, you'll probably want to 'let g:revallinewise = 1' so that
+  it prevents the addition of the '-0777' argument to your g:evalrunner.
+
 g:revalcmd - Pieces together the previous bits to make the actual command. If
   you want to get really fancy, this is the way to control it. After
   executing, reval.vim will use this command's stdout for the output buffer.
