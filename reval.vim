@@ -98,7 +98,7 @@ func! s:StartOutputFile()
   wincmd l
   " XXX I want this to be a truly empty buffer, like when you start vim with
   " no args:
-  e /tmp/unused
+  exec 'e' tempname().'-unused'
   setlocal buftype=nofile
   syn match revalMatch '…'
   hi link revalMatch Todo

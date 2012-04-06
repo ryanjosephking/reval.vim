@@ -1,2 +1,2 @@
 #!/bin/sh
-vim +"let g:revalinput='${1:-/tmp/revalinput}'" +'call RunReval()'
+vim +"let g:revalinput='${1:-/tmp/revalinput$$}'" +'call RunReval()'
