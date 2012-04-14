@@ -110,12 +110,11 @@ etc <withattrs a="b">etc</withattrs>
 endfunc
 
 func! s:StartOutputFile()
-  vsplit
-  wincmd l
-  " XXX I want this to be a truly empty buffer, like when you start vim with
-  " no args:
-  exec 'e' tempname().'-unused'
+  vnew
+  wincmd r
+  setlocal noswapfile
   setlocal buftype=nofile
+  setlocal bufhidden=delete
   syn match revalMatch '…'
   hi link revalMatch Todo
 endfunc
