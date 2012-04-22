@@ -6,10 +6,11 @@ The idea comes from (sites like) http://rubular.com/ where you can input a
 regex, then see it filter the results. Though a really cool use of AJAX, who
 would rather be in a web form than in their very own text editor?
 
-Hence reval.vim. All it does is use your top buffer as the argument to "perl
--pe", then uses the left buffer as that command's stdin, with the right buffer
-capturing stdout. This means that, though it is geared for regex testing by
-default, you could do anything with the loop that you want.
+Hence reval.vim. All it does is use your top buffer as the argument to a
+command, such as "perl -0400 -pe", then uses the left buffer as that command's
+stdin, with the right buffer capturing stdout. This means that, though it is
+geared for regex testing by default, you could do anything with the loop that
+you want.
 
 = Install =
 
@@ -32,7 +33,7 @@ g:revallang - Switches the file, cmd, and "body"-regexp to match your language
 
 g:revalrunner - The command and arguments to use for the filter. (Note: You
     can temporarily set this to 'perl -p -mre=debug' for one run by hitting \d
-    instead of Enter)
+    instead of F5)
   Default when 'perl' == g:revallang is:
     let g:revalrunner = 'perl -p'
 
