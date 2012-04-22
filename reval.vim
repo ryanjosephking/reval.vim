@@ -82,7 +82,7 @@ endfunc
 func! s:StartInputFile()
   exec 'e' g:revalinput
   $
-  if getpos('.')[1] == "1"
+  if line('.') == '1'
     call s:PopulateInputFile()
   end
   w
@@ -93,7 +93,7 @@ func! s:PopulateInputFile()
     a
 brokenfront> etc..
 -- This is the test input file. --
-/* Change the above code, hit Enter,
+/* Change the above code, hit <F5>,
  * then look to the right -->
  */
 [lots more stuff here.]
@@ -120,12 +120,11 @@ func! s:StartOutputFile()
 endfunc
 
 func! s:StartRegexFile()
-  exec 'topleft sp' g:revalfile
+  silent exec 'topleft sp' g:revalfile
   3wincmd _
-  " TODO: Make the following window-specific somehow so that when we quit we
-  " get back to normal:
-  noremap <cr> :call TestTheRegex()<cr>
-  noremap <leader>d :call PerlDebugTestTheRegex()<cr>
+  nnoremap <buffer> <F5> :call TestTheRegex()<cr>
+  imap <buffer> <F5> <Esc><F5>
+  nnoremap <buffer> <leader>d :call PerlDebugTestTheRegex()<cr>
 
   if exists('g:revalcrazyrun')
     au InsertLeave *.pm call TestTheRegex()
@@ -133,7 +132,7 @@ func! s:StartRegexFile()
   call setline('.', g:revalbody)
   " Thanks to #vim's bairui for this spiff-up!:
   call setpos('.', [0, 1, g:revalstartpos, 0])
-  w
+  silent w
 endfunc
 
 func! RunReval()
