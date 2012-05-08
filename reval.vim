@@ -113,6 +113,7 @@ func! s:StartOutputFile()
   vnew
   wincmd r
   setlocal noswapfile
+  " Look at :h preview-window ?
   setlocal buftype=nofile
   setlocal bufhidden=delete
   syn match revalMatch '…'
